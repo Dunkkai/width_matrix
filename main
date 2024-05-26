@@ -1,0 +1,50 @@
+m = [
+    [0,1,1,0,0,0,0,0,0,0], #1
+    [1,0,1,1,0,0,0,0,0,0], #2
+    [1,1,0,0,1,0,0,1,0,0],#3
+    [0,1,0,0,1,1,0,0,0,0],#4
+    [0,0,1,1,0,1,1,1,0,0], #5
+    [0,0,0,1,1,0,1,0,0,0], #6
+    [0,0,0,0,1,1,0,1,0,0], #7
+    [0,0,1,0,1,0,1,0,1,1], #8
+    [0,0,0,0,0,0,0,1,0,1], #9
+    [0,0,0,0,0,0,0,1,1,0], #10
+]
+stop = 10 #коне ц
+start = 1 #начало
+d = {1,}
+z = {}
+g = set()
+way = set()
+for i, value in enumerate(m):
+    if i == 0:
+        print(f"Инициализируем в 1")
+    elif len(d)==0:
+        pass
+    else:
+        print(f"идем из {i} в {d}")
+    if stop in d:
+        print(f"Мы пришли в {stop}")
+    #print(d,g)
+    g.update(d)
+    #print(f"вершины которые уже прошли: {g}")
+    d = set()
+
+
+    for j in range(len(m[0])):
+        if m[i][j]==1:
+            if j+1 not in g:
+                d.add(j+1)
+                z[j+1] = i+1
+    if stop in g:
+        break
+
+#находим путь
+way = []
+l = stop
+while l != start:
+    way.append(l)
+    l = z[l]
+way.append(start)
+way.sort()
+print(f"Путь найден: {way}")
